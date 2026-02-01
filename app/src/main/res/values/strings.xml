@@ -7,4 +7,6 @@
     <string name="no_comments_available">No comments available</string>
     <string name="id">ID</string>
     <string name="email">email</string>
+    <string name="no_internet">No internet - please connect</string>
+    <string name="network_error">Network error</string>
 </resources>

@@ -31,7 +31,7 @@ class CommentRepositoryTest {
         )
         whenever(api.getComments()).thenReturn(dtoList)
 
-        val items = repository.getComments()
+        val items = repository.getComments().getOrThrow()
 
         assertEquals(dtoList.size, items.size)
         assertEquals(1, dtoList[0].postId)

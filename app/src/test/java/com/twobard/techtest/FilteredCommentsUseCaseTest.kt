@@ -29,9 +29,9 @@ class FilteredCommentsUseCaseTest {
             Comment(postId = 2, id = 2, name = "A Comment", email = "test2@test.com", body = "Hello 2"),
             Comment(postId = 3, id = 3, name = "B Comment", email = "test3@test.com", body = "Hello 3"),
         )
-        whenever(repository.getComments()).thenReturn(comments)
+        whenever(repository.getComments()).thenReturn(Result.success(comments))
 
-        val result = useCase.invoke()
+        val result = useCase.invoke().getOrThrow()
 
         assertEquals(3, result.size)
 

@@ -11,11 +11,18 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
+import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import kotlin.intArrayOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE,
+    sdk = [33])
 class CommentViewModelTest {
 
     private lateinit var useCase: SortedCommentsUseCase
@@ -38,7 +45,7 @@ class CommentViewModelTest {
             Comment(postId = 3, id = 3, name = "B Comment", email = "test3@test.com", body = "Hello 3"),
         )
 
-        whenever(useCase.invoke()).thenReturn(comments)
+        whenever(useCase.invoke()).thenReturn(Result.success(comments))
 
         viewModel.loadComments()
         advanceUntilIdle()
