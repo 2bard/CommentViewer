@@ -11,6 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.twobard.techtest.ui.detail.DetailScreen
+import com.twobard.techtest.ui.list.CommentListViewModel
 import com.twobard.techtest.ui.list.ListScreen
 import com.twobard.techtest.ui.theme.TechTestTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,26 +28,27 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TechTestTheme {
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    ListScreen()
-                }
+                TechTestAppComposable()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun TechTestAppComposable() {
+    val navController = rememberNavController()
+    val startRoute = "home"
+    NavHost(navController, startDestination = startRoute) {
+        composable("home") { backStackEntry ->
+            val viewModel = hiltViewModel<CommentListViewModel>()
+            ListScreen(viewModel) {
+                navController.navigate("detail")
+            }
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TechTestTheme {
-        Greeting("Android")
+        composable("detail") { backStackEntry ->
+            DetailScreen()
+        }
+
     }
 }

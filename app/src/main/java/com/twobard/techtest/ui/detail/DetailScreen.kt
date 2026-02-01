@@ -1,4 +1,4 @@
-package com.twobard.techtest.ui.list
+package com.twobard.techtest.ui.detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -10,27 +10,32 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.twobard.techtest.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(
-    viewModel: CommentListViewModel = viewModel(),
-    onClickItem: () -> Unit = {}
+fun DetailScreen(
+    onClickBack : () -> Unit = {}
 ) {
 
     Scaffold(
         topBar =  {
             TopAppBar(
-                title = { Text(stringResource(R.string.comment_list)) }
+                title = { Text(stringResource(R.string.comment_detail)) },
+                navigationIcon = {
+                    Text(
+                        text = stringResource(R.string.back),
+                        modifier = Modifier
+                            .clickable { onClickBack() }
+                    )
+                }
             )
         }
     ) {
-        paddingValues ->
+            paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             Box(modifier = Modifier.clickable{
-                onClickItem()
+
             }) {
                 Text("test123")
             }

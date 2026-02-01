@@ -54,6 +54,7 @@ dependencies {
 
     //UI
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //DI
     implementation(libs.hilt.android)
