@@ -1,4 +1,4 @@
-import org.w3c.dom.Comment
+import com.twobard.techtest.domain.repository.Comment
 
 
 interface CommentRepository {
