@@ -8,6 +8,10 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 import com.twobard.techtest.data.JsonPlaceholderApiService
+import com.twobard.techtest.data.NetworkError
+import org.mockito.Mockito.doAnswer
+import java.io.IOException
+import java.net.UnknownHostException
 import kotlin.test.assertEquals
 
 
@@ -20,6 +24,28 @@ class CommentRepositoryTest {
     fun setup() {
         api = mock()
         repository = CommentRepositoryImpl(api)
+    }
+
+    @Test
+    fun `given a NoInternet error when getComments() then check NoInternet is returned`() = runTest {
+        doAnswer { throw UnknownHostException() }.`when`(api).getComments()
+
+        val result = repository.getComments()
+
+        assert(result.isFailure)
+        val res = result.exceptionOrNull() as? NetworkError.NoInternet
+        assertEquals(R.string.no_internet, res?.messageRes)
+    }
+
+    @Test
+    fun `given an IOException error when getComments() then check IOException is returned`() = runTest {
+        doAnswer { throw IOException() }.`when`(api).getComments()
+
+        val result = repository.getComments()
+
+        assert(result.isFailure)
+        val res = result.exceptionOrNull() as? NetworkError.NetworkFailure
+        assertEquals(R.string.network_error, res?.messageRes)
     }
 
     @Test
