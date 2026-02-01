@@ -22,7 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 
 @AndroidEntryPoint
@@ -38,23 +39,35 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//I've made this so we don't have to keep typing the routes as strings everywhere
+enum class Routes(val route: String) {
+     HOME("home"),
+     DETAIL("detail")
+}
+
 @Composable
 fun TechTestAppComposable() {
     val navController = rememberNavController()
-    val startRoute = "home"
+    val startRoute = Routes.HOME.route
+
+    //Using the Android navigation library, used Voyager in the past but wanted to try this
     NavHost(navController, startDestination = startRoute) {
 
         //List screen
-        composable("home") { backStackEntry ->
+        composable(Routes.HOME.route) { backStackEntry ->
             ListScreenState(navController)
         }
 
         //Detail screen
-//        composable("detail") { backStackEntry ->
-//            DetailScreen() {
-//                navController.popBackStack()
-//            }
-//        }
+        composable(
+            route = Routes.DETAIL.route + "/{commentId}", //Not sure if an enum class for args is overkill
+            arguments = listOf(
+            navArgument("commentId") { type = NavType.IntType }
+        )) { backStackEntry ->
+            DetailScreen() {
+                navController.popBackStack()
+            }
+        }
 
     }
 }
@@ -62,16 +75,24 @@ fun TechTestAppComposable() {
 @SuppressLint("LocalContextGetResourceValueCall")
 @Composable
 fun ListScreenState(navController: androidx.navigation.NavHostController) {
-    val context = LocalContext.current
 
+    //Trying to set up all the state handling here, so ListScreen is as simple as possible
+    val context = LocalContext.current
     val viewModel = hiltViewModel<CommentListViewModel>()
+
     val snackbarHostState = remember { SnackbarHostState() }
-    val comments by viewModel.comments.collectAsState(initial = listOf())
-    val onClickItem: ((Comment) -> Unit) = { navController.navigate("detail") }
+
+    //click listeners
+    val onClickItem: ((Comment) -> Unit) = { navController.navigate(Routes.DETAIL) }
     val onClickRefresh : (() -> Unit) = { viewModel.loadComments() }
+
+    //StateFlow for list state
+    val comments by viewModel.comments.collectAsState(initial = listOf())
+
+    //SharedFlow for errors
     val errors by viewModel.errors.collectAsState(null)
 
-    //Never been a fan of this pattern
+    //Never been a fan of this pattern but not sure of a better approach!
     LaunchedEffect(errors) {
         errors?.let {
             snackbarHostState.showSnackbar(context.getString(it.messageRes))

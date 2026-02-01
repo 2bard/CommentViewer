@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.twobard.techtest.data.NetworkError
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
+import com.twobard.techtest.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,13 +17,10 @@ import javax.inject.Inject
 @HiltViewModel
 class CommentListViewModel @Inject constructor(
     val sortedCommentsUseCase: SortedCommentsUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _comments = MutableStateFlow<List<Comment>>(listOf())
     val comments: MutableStateFlow<List<Comment>> = _comments
-
-    private val _errors = MutableSharedFlow<NetworkError?>()
-    val errors: SharedFlow<NetworkError?> = _errors
 
     init {
         loadComments()
@@ -39,13 +37,8 @@ class CommentListViewModel @Inject constructor(
         }
     }
 
-    suspend fun handleError(e: NetworkError?){
-        _errors.emit(e)
-        log(e)
-    }
 
-    fun log(e: Throwable?){
-        //TODO: Replace with timber
-        Log.e("CommentListViewModel", "Error loading comments", e)
+    override fun getTag(): String {
+        return "CommentListViewModel"
     }
 }
