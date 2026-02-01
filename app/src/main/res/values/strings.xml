@@ -3,4 +3,5 @@
     <string name="back">Back</string>
     <string name="comment_detail">Comment detail</string>
     <string name="comment_list">Comment list</string>
+    <string name="refresh">Refresh</string>
 </resources>
