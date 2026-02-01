@@ -17,6 +17,10 @@ class CommentListViewModel @Inject constructor(
     private val _comments = MutableStateFlow<List<Comment>>(listOf())
     val comments: MutableStateFlow<List<Comment>> = _comments
 
+    init {
+        loadComments()
+    }
+
     fun loadComments() {
         viewModelScope.launch {
             val result = sortedCommentsUseCase.invoke()
