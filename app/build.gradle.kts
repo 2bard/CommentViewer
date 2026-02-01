@@ -63,6 +63,9 @@ dependencies {
     //Testing
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.robolectric)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
