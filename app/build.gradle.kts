@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.mockwebserver)
+    ksp(libs.moshi.kotlin.codegen)
 
     //Testing
     testImplementation(libs.kotlinx.coroutines.test)
