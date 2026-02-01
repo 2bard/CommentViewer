@@ -2,7 +2,7 @@ package com.twobard.techtest.di.network
 
 import com.squareup.moshi.Moshi
 import com.twobard.techtest.BuildConfig
-import com.twobard.techtest.data.ItemApiService
+import com.twobard.techtest.data.JsonPlaceholderApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,6 +40,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideItemApiService(retrofit: Retrofit): ItemApiService =
-        retrofit.create(ItemApiService::class.java)
+    fun provideItemApiService(retrofit: Retrofit): JsonPlaceholderApiService =
+        retrofit.create(JsonPlaceholderApiService::class.java)
 }
