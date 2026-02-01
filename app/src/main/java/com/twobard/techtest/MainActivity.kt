@@ -64,9 +64,9 @@ fun TechTestAppComposable() {
             arguments = listOf(
             navArgument("commentId") { type = NavType.IntType }
         )) { backStackEntry ->
-            DetailScreen() {
-                navController.popBackStack()
-            }
+//            DetailScreen() {
+//                navController.popBackStack()
+//            }
         }
 
     }
@@ -87,7 +87,8 @@ fun ListScreenState(navController: androidx.navigation.NavHostController) {
     val onClickRefresh : (() -> Unit) = { viewModel.loadComments() }
 
     //StateFlow for list state
-    val comments by viewModel.comments.collectAsState(initial = listOf())
+    val comments by viewModel.comments.collectAsState()
+    val isLoading by viewModel.loading.collectAsState()
 
     //SharedFlow for errors
     val errors by viewModel.errors.collectAsState(null)
@@ -99,5 +100,5 @@ fun ListScreenState(navController: androidx.navigation.NavHostController) {
         }
     }
 
-    ListScreen(comments, snackbarHostState, onClickItem, onClickRefresh)
+    ListScreen(comments, isLoading, snackbarHostState, onClickItem, onClickRefresh)
 }

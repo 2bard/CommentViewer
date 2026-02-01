@@ -21,15 +21,28 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.twobard.techtest.R
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.ui.components.EmptyListState
+import com.twobard.techtest.ui.components.LoadingState
 import com.twobard.techtest.ui.components.NavBarText
 import com.twobard.techtest.ui.theme.ThemePadding
 
+
+@Preview
+@Composable
+fun ListScreenIsLoadingPreview() {
+    ListScreen(
+        items = emptyList(),
+        isLoading = true,
+        onClickReload = {},
+        snackbarHostState = SnackbarHostState()
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun ListScreen(
     @PreviewParameter(CommentListPreviewProvider::class) items: List<Comment>,
+    isLoading: Boolean = false,
     snackbarHostState: SnackbarHostState = SnackbarHostState(),
     onClickItem: (Comment) -> Unit = {},
     onClickReload: () -> Unit = {}
@@ -48,6 +61,7 @@ fun ListScreen(
         paddingValues ->
         Box(modifier = Modifier.padding(paddingValues).fillMaxSize(), contentAlignment = Alignment.Center) {
             ItemList(
+                isLoading = isLoading,
                 values = items,
                 onClickItem = onClickItem,
                 onClickReload = onClickReload
@@ -61,11 +75,16 @@ fun ListScreen(
 @Composable
 fun ItemList(
     @PreviewParameter(CommentListPreviewProvider::class) values: List<Comment>,
+    isLoading: Boolean,
     onClickItem: (Comment) -> Unit = {},
     onClickReload: () -> Unit = {}
 ) {
     Box(modifier = Modifier.padding(ThemePadding.screenPadding()).fillMaxSize()){
-        if(values.isEmpty()){
+
+        //Not sure what the best UX is here
+        if(isLoading) {
+            LoadingState()
+        } else if(values.isEmpty()){
             EmptyListState(onClickReload)
         } else {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(ThemePadding.listPadding())) {

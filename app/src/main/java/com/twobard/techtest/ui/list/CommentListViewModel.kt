@@ -8,6 +8,7 @@ import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import com.twobard.techtest.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -28,10 +29,13 @@ class CommentListViewModel @Inject constructor(
 
     fun loadComments() {
         viewModelScope.launch {
+            isLoading()
             val result = sortedCommentsUseCase.invoke()
             result.getOrNull()?.let {
                 _comments.value = it
+                finishLoading()
             } ?: run {
+                finishLoading()
                 handleError(result.exceptionOrNull() as NetworkError?)
             }
         }
