@@ -38,7 +38,8 @@ import com.twobard.techtest.ui.theme.ThemePadding
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    onClickBack: () -> Unit = {}
+    onClickBack: () -> Unit = {},
+    comment: Comment
 ) {
     Scaffold(
         topBar = {

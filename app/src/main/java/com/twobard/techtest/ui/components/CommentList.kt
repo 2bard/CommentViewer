@@ -19,14 +19,14 @@ import com.twobard.techtest.ui.theme.ThemePadding
 @Preview
 @Composable
 fun ListItem(
-    @PreviewParameter(CommentPreviewProvider ::class) comment: Comment,
+    @PreviewParameter(CommentPreviewProvider::class) comment: Comment,
     onClickItem: (Comment) -> Unit = {}){
     Card(
         modifier = Modifier.clickable{
             onClickItem.invoke(comment)
         },
-        elevation = CardDefaults.cardElevation(ThemePadding().defaultElevation())) {
-        Column(modifier = Modifier.padding(ThemePadding().boxPadding()).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(ThemePadding().listPadding())) {
+        elevation = CardDefaults.cardElevation(ThemePadding.defaultElevation())) {
+        Column(modifier = Modifier.padding(ThemePadding.boxPadding()).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(ThemePadding.listPadding())) {
             Text(text = comment.name, style = MaterialTheme.typography.titleMedium)
             Text(text = comment.body,  style = MaterialTheme.typography.bodyMedium)
         }
@@ -37,7 +37,7 @@ class CommentListPreviewProvider : PreviewParameterProvider<List<Comment>> {
     override val values = sequenceOf(
         emptyList(),
         listOf(
-            Comment(postId = 1, id = 1, name = "C Comment", email = "test@test.com", body = "Hello 1"),
+            Comment(postId = 1, id = 1, name = "C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long ", email = "test@test.com", body = "Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 "),
             Comment(postId = 2, id = 2, name = "A Comment", email = "test2@test.com", body = "Hello 2"),
             Comment(postId = 3, id = 3, name = "B Comment", email = "test3@test.com", body = "Hello 3")
         )
@@ -47,6 +47,6 @@ class CommentListPreviewProvider : PreviewParameterProvider<List<Comment>> {
 class CommentPreviewProvider : PreviewParameterProvider<Comment> {
     override val values = sequenceOf(
         Comment(postId = 1, id = 1, name = "Normal name", email = "test@test.com", body = "Normal body comment"),
-        Comment(postId = 1, id = 1, name = "Long name. Long name. Long name. Long name. Long name. Long name.  ", email = "test@test.com", body = "Long comment. Long comment. Long comment. Long comment. Long comment. Long comment. Long comment. "),
+        Comment(postId = 1, id = 1, name = "Long name. Long name. Long name. Long name. Long name. Long name.  ", email = "test+test+test+test+test+test+test+test+test+test+test+test+test@test.com", body = "Long comment. Long comment. Long comment. Long comment. Long comment. Long comment. Long comment. "),
     )
 }
