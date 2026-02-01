@@ -10,6 +10,10 @@ android {
     namespace = "com.twobard.techtest"
     compileSdk = 36
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.twobard.techtest"
         minSdk = 24
@@ -18,7 +22,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "ENDPOINT_URL", "\"https://jsonplaceholder.typicode.com/\"")
     }
+
 
     buildTypes {
         release {
@@ -46,6 +53,10 @@ dependencies {
     //DI
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
