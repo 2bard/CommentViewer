@@ -57,6 +57,11 @@ dependencies {
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
+    implementation(libs.mockwebserver)
+
+    //Testing
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -73,4 +78,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(kotlin("test"))
 }
