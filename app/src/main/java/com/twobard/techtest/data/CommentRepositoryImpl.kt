@@ -1,7 +1,7 @@
 package com.twobard.techtest.data
 
-import CommentRepository
 import com.twobard.techtest.domain.repository.Comment
+import com.twobard.techtest.domain.repository.CommentRepository
 import jakarta.inject.Inject
 
 class CommentRepositoryImpl @Inject constructor(val apiService: JsonPlaceholderApiService) : CommentRepository {
