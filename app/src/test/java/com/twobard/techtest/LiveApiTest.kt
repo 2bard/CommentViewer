@@ -25,7 +25,7 @@ class LiveApiTest {
 
     @Test
     fun `fetch items from real API`() = runTest {
-        val items = api.getItems()
+        val items = api.getComments()
         assertTrue(items.isNotEmpty())
     }
 }
