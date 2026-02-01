@@ -14,6 +14,8 @@ android {
         buildConfig = true
     }
 
+
+
     defaultConfig {
         applicationId = "com.twobard.techtest"
         minSdk = 24
@@ -50,6 +52,9 @@ android {
 
 dependencies {
 
+    //UI
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
     //DI
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
@@ -57,7 +62,6 @@ dependencies {
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
-    implementation(libs.mockwebserver)
     ksp(libs.moshi.kotlin.codegen)
 
     //Testing

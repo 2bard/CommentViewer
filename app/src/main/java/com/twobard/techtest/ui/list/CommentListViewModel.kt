@@ -13,13 +13,12 @@ import javax.inject.Inject
 class CommentListViewModel @Inject constructor(
     val sortedCommentsUseCase: SortedCommentsUseCase
 ) : ViewModel() {
-
     private val _comments = MutableStateFlow<List<Comment>>(listOf())
     val comments: MutableStateFlow<List<Comment>> = _comments
 
     fun loadComments() {
         viewModelScope.launch {
-            val result = sortedCommentsUseCase()
+            val result = sortedCommentsUseCase.invoke()
             _comments.value = result
         }
     }
