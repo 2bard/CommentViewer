@@ -2,7 +2,7 @@ package com.twobard.techtest
 
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.repository.CommentRepository
-import com.twobard.techtest.domain.usecase.FilteredCommentsUseCase
+import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.mockito.Mockito.mock
@@ -14,12 +14,12 @@ import kotlin.test.assertEquals
 class FilteredCommentsUseCaseTest {
 
     private lateinit var repository: CommentRepository
-    private lateinit var useCase: FilteredCommentsUseCase
+    private lateinit var useCase: SortedCommentsUseCase
 
     @Before
     fun setup() {
         repository = mock()
-        useCase = FilteredCommentsUseCase(repository)
+        useCase = SortedCommentsUseCase(repository)
     }
 
     @Test

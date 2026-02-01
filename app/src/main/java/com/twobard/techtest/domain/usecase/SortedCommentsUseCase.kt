@@ -4,7 +4,7 @@ import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.repository.CommentRepository
 import javax.inject.Inject
 
-class FilteredCommentsUseCase @Inject constructor(
+class SortedCommentsUseCase @Inject constructor(
     private val repository: CommentRepository
 ) {
 
