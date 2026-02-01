@@ -47,7 +47,9 @@ fun TechTestAppComposable() {
         }
 
         composable("detail") { backStackEntry ->
-            DetailScreen()
+            DetailScreen() {
+                navController.popBackStack()
+            }
         }
 
     }
