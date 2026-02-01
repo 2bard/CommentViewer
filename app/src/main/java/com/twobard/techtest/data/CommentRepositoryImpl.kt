@@ -11,6 +11,7 @@ import java.net.UnknownHostException
 class CommentRepositoryImpl @Inject constructor(val apiService: JsonPlaceholderApiService) : CommentRepository {
     private val api = apiService
 
+    //TODO: Think about some sort of caching - maybe Room
     override suspend fun getComments(): Result<List<Comment>> {
         return try {
             val dtos = api.getComments()
