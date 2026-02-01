@@ -17,6 +17,7 @@ import kotlin.test.assertTrue
     sdk = [33])
 class LiveApiTest {
 
+    //This is more of an integration test, I probably wouldn't run it during CI
     private val retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.ENDPOINT_URL) // real API
         .addConverterFactory(MoshiConverterFactory.create())
