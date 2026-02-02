@@ -35,7 +35,7 @@ class DetailScreenPreviewTest {
     fun listScreenPreview() {
         val provider = CommentListPreviewProvider()
         provider.values.forEach {
-            paparazzi.snapshot(name = "DetailScreen_{${it.hashCode()}") {
+            paparazzi.snapshot(name = "ListScreen_{${it.hashCode()}") {
                 TechTestTheme {
                     CommentListScreen(it)
                 }
@@ -47,7 +47,7 @@ class DetailScreenPreviewTest {
     fun listScreenLoadingPreview() {
         val provider = CommentListPreviewProvider()
         provider.values.forEach {
-            paparazzi.snapshot(name = "LoadingDetailScreen_{${it.hashCode()}") {
+            paparazzi.snapshot(name = "LoadingListScreen_{${it.hashCode()}") {
                 TechTestTheme {
                     ListScreenIsLoadingPreview()
                 }
