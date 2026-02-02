@@ -37,3 +37,4 @@
 - UI tests could be expanded to test across a wide range of device configs
 - Proper caching could be added to repository (probably room)
 - Use SavedStateHandle in ViewModels
+- Navigation structure change to handle tablets
