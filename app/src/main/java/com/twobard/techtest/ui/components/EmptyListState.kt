@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,7 +27,9 @@ import com.twobard.techtest.ui.theme.ThemePadding
 
 @Composable
 fun BoxScope.EmptyListState(onClickReload: () -> Unit = {}) {
-    Column(modifier = Modifier.padding(ThemePadding.boxPadding()).align(Alignment.Center)) {
+    Column(modifier = Modifier
+        .padding(ThemePadding.boxPadding())
+        .align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = stringResource(R.string.no_comments_available))
 
         Spacer(modifier = Modifier.height(ThemePadding.elementSpacing()))
@@ -52,7 +55,13 @@ fun BoxScope.EmptyListState(onClickReload: () -> Unit = {}) {
 @Composable
 @Preview
 fun BoxScope.LoadingState(){
-    Box(modifier = Modifier.size(64.dp).align(Alignment.Center)){
-        CircularProgressIndicator()
+    Box(modifier = Modifier
+        .size(64.dp)
+        .align(Alignment.Center)){
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            CircularProgressIndicator()
+            Text(stringResource(R.string.loading), style = MaterialTheme.typography.titleSmall)
+        }
+
     }
 }
