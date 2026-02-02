@@ -45,6 +45,7 @@
 
 ## Comment list - loaded list
 - Note: these comments are hard-coded. Actual runtime uses sorting
+
 ![Comment list - loaded list](app/build/reports/paparazzi/debug/images/6dc73f25b9d28ccbdfae389918e80a3e7f00c421.png)
 
 ## Comment list - empty state
