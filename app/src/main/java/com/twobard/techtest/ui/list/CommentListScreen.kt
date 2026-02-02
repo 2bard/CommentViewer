@@ -29,7 +29,7 @@ import com.twobard.techtest.ui.theme.ThemePadding
 @Preview
 @Composable
 fun ListScreenIsLoadingPreview() {
-    ListScreen(
+    CommentListScreen(
         items = emptyList(),
         isLoading = true,
         onClickReload = {},
@@ -40,7 +40,7 @@ fun ListScreenIsLoadingPreview() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun ListScreen(
+fun CommentListScreen(
     @PreviewParameter(CommentListPreviewProvider::class) items: List<Comment>,
     isLoading: Boolean = false,
     snackbarHostState: SnackbarHostState = SnackbarHostState(),

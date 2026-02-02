@@ -36,6 +36,13 @@ import com.twobard.techtest.ui.components.NavBarText
 import com.twobard.techtest.ui.theme.ThemePadding
 
 
+@Composable
+@Preview
+fun DetailScreenPreview (@PreviewParameter(CommentPreviewProvider::class) comment: Comment) {
+    DetailScreen(comment)
+}
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(

@@ -42,5 +42,5 @@ fun ListScreenState(navController: NavHostController) {
         }
     }
 
-    ListScreen(comments, isLoading, snackbarHostState, onClickItem, onClickRefresh)
+    CommentListScreen(comments, isLoading, snackbarHostState, onClickItem, onClickRefresh)
 }

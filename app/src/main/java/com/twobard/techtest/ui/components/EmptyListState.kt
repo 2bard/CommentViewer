@@ -51,17 +51,3 @@ fun BoxScope.EmptyListState(onClickReload: () -> Unit = {}) {
         }
     }
 }
-
-@Composable
-@Preview
-fun BoxScope.LoadingState(){
-    Box(modifier = Modifier
-        .size(64.dp)
-        .align(Alignment.Center)){
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            CircularProgressIndicator()
-            Text(stringResource(R.string.loading), style = MaterialTheme.typography.titleSmall)
-        }
-
-    }
-}

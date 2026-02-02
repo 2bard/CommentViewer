@@ -39,7 +39,14 @@ class CommentListPreviewProvider : PreviewParameterProvider<List<Comment>> {
         listOf(
             Comment(postId = 1, id = 1, name = "C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long C Comment long ", email = "test@test.com", body = "Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 Hello 1 "),
             Comment(postId = 2, id = 2, name = "A Comment", email = "test2@test.com", body = "Hello 2"),
-            Comment(postId = 3, id = 3, name = "B Comment", email = "test3@test.com", body = "Hello 3")
+            Comment(postId = 3, id = 3, name = "B Comment", email = "test3@test.com", body = "Hello 3"),
+            Comment(postId = 4, id = 4, name = "D Comment", email = "test3@test.com", body = "Hello 3"),
+            Comment(postId = 5, id = 5, name = "E Comment", email = "test3@test.com", body = "Hello 4"),
+            Comment(postId = 6, id = 6, name = "F Comment", email = "test3@test.com", body = "Hello 5"),
+            Comment(postId = 7, id = 7, name = "G Comment", email = "test3@test.com", body = "Hello 6"),
+            Comment(postId = 8, id = 8, name = "H Comment", email = "test3@test.com", body = "Hello 7"),
+            Comment(postId = 9, id = 9, name = "I Comment", email = "test3@test.com", body = "Hello 8"),
+            Comment(postId = 10, id = 20, name = "J Comment", email = "test3@test.com", body = "Hello 9")
         )
     )
 }
