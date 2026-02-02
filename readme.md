@@ -39,6 +39,14 @@
 - Use SavedStateHandle in ViewModels
 - Navigation structure change to handle tablets
 
+# Demo videos
+
+[[Demo video 1]](video/demo.mov)
+
+
+[[Demo video - no internet connection]](video/demo.mov)
+
+
 # Paparazzi screenshots
 
 ## Comment list - loaded list
