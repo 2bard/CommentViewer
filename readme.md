@@ -44,7 +44,8 @@
 # Paparazzi screenshots
 
 ## Comment list - loaded list
-![Comment list - empty state](app/build/reports/paparazzi/debug/images/6dc73f25b9d28ccbdfae389918e80a3e7f00c421.png)
+- Note: these comments are hard-coded. Actual runtime uses sorting
+![Comment list - loaded list](app/build/reports/paparazzi/debug/images/6dc73f25b9d28ccbdfae389918e80a3e7f00c421.png)
 
 ## Comment list - empty state
 ![Comment list - empty state](app/build/reports/paparazzi/debug/images/529b6e37a66fab11d3d7fe27ebad11315a8eedac.png)
