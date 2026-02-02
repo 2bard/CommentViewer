@@ -1,8 +1,7 @@
-package com.twobard.techtest
+package com.twobard.techtest.usecase
 
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.repository.CommentRepository
-import com.twobard.techtest.domain.usecase.GetCommentUseCase
 import org.junit.Before
 import org.mockito.kotlin.mock
 

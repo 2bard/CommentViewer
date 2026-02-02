@@ -2,7 +2,7 @@ package com.twobard.techtest.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.twobard.techtest.data.NetworkError
+import com.twobard.techtest.data.repository.NetworkError
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

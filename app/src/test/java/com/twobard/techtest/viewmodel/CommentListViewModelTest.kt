@@ -1,4 +1,4 @@
-package com.twobard.techtest
+package com.twobard.techtest.viewmodel
 
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase

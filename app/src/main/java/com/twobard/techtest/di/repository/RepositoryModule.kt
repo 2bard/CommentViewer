@@ -1,6 +1,6 @@
 package com.twobard.techtest.di.repository
 
-import com.twobard.techtest.data.CommentRepositoryImpl
+import com.twobard.techtest.data.repository.CommentRepositoryImpl
 import com.twobard.techtest.domain.repository.CommentRepository
 
 import dagger.Binds

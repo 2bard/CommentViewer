@@ -9,10 +9,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.twobard.techtest.Routes
+
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.ui.list.CommentListViewModel
 import com.twobard.techtest.ui.list.ListScreen
+import com.twobard.techtest.ui.nav.Routes
 
 @SuppressLint("LocalContextGetResourceValueCall")
 @Composable

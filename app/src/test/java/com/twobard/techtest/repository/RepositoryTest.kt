@@ -1,14 +1,15 @@
-package com.twobard.techtest
+package com.twobard.techtest.repository
 
-import com.twobard.techtest.data.CommentDto
-import com.twobard.techtest.data.CommentRepositoryImpl
+import com.twobard.techtest.R
+import com.twobard.techtest.data.dto.CommentDto
+import com.twobard.techtest.data.repository.CommentRepositoryImpl
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
-import com.twobard.techtest.data.JsonPlaceholderApiService
-import com.twobard.techtest.data.NetworkError
+import com.twobard.techtest.data.api.JsonPlaceholderApiService
+import com.twobard.techtest.data.repository.NetworkError
 import org.mockito.Mockito.doAnswer
 import java.io.IOException
 import java.net.UnknownHostException

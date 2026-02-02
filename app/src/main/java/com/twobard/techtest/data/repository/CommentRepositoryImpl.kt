@@ -1,7 +1,9 @@
-package com.twobard.techtest.data
+package com.twobard.techtest.data.repository
 
 import androidx.annotation.StringRes
 import com.twobard.techtest.R
+import com.twobard.techtest.data.api.JsonPlaceholderApiService
+import com.twobard.techtest.data.dto.toDomainModel
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.repository.CommentRepository
 import jakarta.inject.Inject

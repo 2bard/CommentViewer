@@ -1,9 +1,8 @@
 package com.twobard.techtest.ui.detail
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.twobard.techtest.data.NetworkError
+import com.twobard.techtest.data.repository.NetworkError
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.GetCommentUseCase
 import com.twobard.techtest.ui.BaseViewModel
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    getCommentUseCase: GetCommentUseCase
+    val getCommentUseCase: GetCommentUseCase
 ) : BaseViewModel() {
 
     val commentId: Int = checkNotNull(savedStateHandle["commentId"])
@@ -25,15 +24,19 @@ class DetailViewModel @Inject constructor(
     val comment: StateFlow<Comment?> = _comment
 
     init {
+        loadComment()
+    }
+
+    fun loadComment(){
         viewModelScope.launch {
-                val commentResult = getCommentUseCase.invoke(commentId)
-                commentResult.getOrNull()?.let {
-                    _comment.value = it
-                    finishLoading()
-                } ?: run {
-                    finishLoading()
-                    handleError(commentResult.exceptionOrNull() as NetworkError?)
-                }
+            val commentResult = getCommentUseCase.invoke(commentId)
+            commentResult.getOrNull()?.let {
+                _comment.value = it
+                finishLoading()
+            } ?: run {
+                finishLoading()
+                handleError(commentResult.exceptionOrNull() as NetworkError?)
+            }
         }
     }
 

@@ -2,7 +2,7 @@ package com.twobard.techtest.di.network
 
 import com.squareup.moshi.Moshi
 import com.twobard.techtest.BuildConfig
-import com.twobard.techtest.data.JsonPlaceholderApiService
+import com.twobard.techtest.data.api.JsonPlaceholderApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

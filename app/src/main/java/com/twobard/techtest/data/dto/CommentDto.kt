@@ -1,4 +1,4 @@
-package com.twobard.techtest.data
+package com.twobard.techtest.data.dto
 
 import kotlinx.serialization.Serializable
 import com.squareup.moshi.JsonClass

@@ -1,17 +1,12 @@
 package com.twobard.techtest.ui.list
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.twobard.techtest.data.NetworkError
+import com.twobard.techtest.data.repository.NetworkError
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import com.twobard.techtest.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

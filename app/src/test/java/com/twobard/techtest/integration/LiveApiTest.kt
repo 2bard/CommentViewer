@@ -1,15 +1,14 @@
-package com.twobard.techtest
+package com.twobard.techtest.integration
 
-
-import com.twobard.techtest.data.JsonPlaceholderApiService
-
+import com.twobard.techtest.BuildConfig
+import com.twobard.techtest.data.api.JsonPlaceholderApiService
 import kotlinx.coroutines.test.runTest
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import kotlin.test.Test
 import kotlin.test.assertTrue
 
 @RunWith(RobolectricTestRunner::class)
