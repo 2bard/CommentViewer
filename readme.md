@@ -38,3 +38,20 @@
 - Proper caching could be added to repository (probably room)
 - Use SavedStateHandle in ViewModels
 - Navigation structure change to handle tablets
+
+# Paparazzi screenshots
+
+## Comment list - loaded list
+![Comment list - empty state](app/build/reports/paparazzi/debug/images/6dc73f25b9d28ccbdfae389918e80a3e7f00c421.png)
+
+## Comment list - empty state
+![Comment list - empty state](app/build/reports/paparazzi/debug/images/529b6e37a66fab11d3d7fe27ebad11315a8eedac.png)
+
+## Comment list - loading state
+![screenshot](app/build/reports/paparazzi/debug/images/cf5d09d930559929a94e405338be7969d4591df8.png)
+
+## Comment detail
+![screenshot](app/build/reports/paparazzi/debug/images/9ce6c9d7681cb8be518ae87a5eb8eaeb050bbdfc.png)
+
+## Comment detail - long text
+![Comment detail](app/build/reports/paparazzi/debug/images/51c56d7a9b3075910e14ab2d889606a279184b6e.png)
