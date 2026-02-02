@@ -1,4 +1,4 @@
-package com.twobard.techtest.ui.detail
+package com.twobard.techtest.ui.list
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.SnackbarHostState
@@ -9,15 +9,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavHostController
 
 import com.twobard.techtest.domain.repository.Comment
-import com.twobard.techtest.ui.list.CommentListViewModel
-import com.twobard.techtest.ui.list.ListScreen
 import com.twobard.techtest.ui.nav.Routes
 
 @SuppressLint("LocalContextGetResourceValueCall")
 @Composable
-fun ListScreenState(navController: androidx.navigation.NavHostController) {
+fun ListScreenState(navController: NavHostController) {
 
     //Trying to set up all the state handling here, so ListScreen is as simple as possible
     val context = LocalContext.current

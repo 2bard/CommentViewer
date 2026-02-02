@@ -11,7 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.twobard.techtest.ui.detail.DetailScreenState
-import com.twobard.techtest.ui.detail.ListScreenState
+import com.twobard.techtest.ui.list.ListScreenState
 import com.twobard.techtest.ui.nav.Routes
 import com.twobard.techtest.ui.theme.TechTestTheme
 import dagger.hilt.android.AndroidEntryPoint
