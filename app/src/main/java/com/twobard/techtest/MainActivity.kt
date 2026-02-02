@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.twobard.techtest.ui.detail.DetailViewModel
 
 
 @AndroidEntryPoint
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TechTestTheme {
                 TechTestAppComposable()
+
             }
         }
     }
@@ -64,9 +66,11 @@ fun TechTestAppComposable() {
             arguments = listOf(
             navArgument("commentId") { type = NavType.IntType }
         )) { backStackEntry ->
-//            DetailScreen() {
-//                navController.popBackStack()
-//            }
+            val viewModel = hiltViewModel<DetailViewModel>()
+            val comment by viewModel.comment.collectAsState()
+            DetailScreen(comment) {
+                navController.popBackStack()
+            }
         }
 
     }
@@ -83,7 +87,7 @@ fun ListScreenState(navController: androidx.navigation.NavHostController) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     //click listeners
-    val onClickItem: ((Comment) -> Unit) = { navController.navigate(Routes.DETAIL) }
+    val onClickItem: ((Comment) -> Unit) = { navController.navigate(Routes.DETAIL.route + "/" + it.id) }
     val onClickRefresh : (() -> Unit) = { viewModel.loadComments() }
 
     //StateFlow for list state

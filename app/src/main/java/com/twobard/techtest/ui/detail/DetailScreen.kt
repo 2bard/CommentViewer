@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -38,8 +39,8 @@ import com.twobard.techtest.ui.theme.ThemePadding
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    onClickBack: () -> Unit = {},
-    comment: Comment
+    comment: Comment?,
+    onClickBack: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -59,11 +60,13 @@ fun DetailScreen(
         }
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
-            Box(modifier = Modifier.clickable {
 
-            }) {
-                Text("test123")
+            Box(modifier = Modifier.padding(ThemePadding.screenPadding())) {
+                comment?.let {
+                    DetailPanel(it)
+                }
             }
+
         }
     }
 }
@@ -73,7 +76,7 @@ fun DetailScreen(
 fun DetailPanel(@PreviewParameter(CommentPreviewProvider::class) comment: Comment){
 
     Card {
-        Column {
+        Column(modifier = Modifier.padding(ThemePadding.boxPadding())) {
             Column(modifier = Modifier
                 .padding(ThemePadding.boxPadding())
                 .fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(ThemePadding.listPadding())) {
@@ -95,8 +98,8 @@ fun DetailPanel(@PreviewParameter(CommentPreviewProvider::class) comment: Commen
 @Composable
 fun PropertyRow(key: String, value: String){
 
-    Row(modifier = Modifier.padding(ThemePadding.boxPadding())){
-        Text(modifier = Modifier.wrapContentSize(), text = key, style = MaterialTheme.typography.bodyMedium)
+    Row(modifier = Modifier.padding(ThemePadding.boxPadding()), verticalAlignment = Alignment.CenterVertically){
+        Text(modifier = Modifier.wrapContentSize(), text = key, style = MaterialTheme.typography.titleMedium)
         Text(modifier = Modifier.weight(1f), maxLines = 1, text = value, style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.End, overflow = TextOverflow.Ellipsis)
     }
 }
