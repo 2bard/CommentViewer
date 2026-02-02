@@ -12,12 +12,17 @@ import java.net.UnknownHostException
 
 class CommentRepositoryImpl @Inject constructor(val apiService: JsonPlaceholderApiService) : CommentRepository {
     private val api = apiService
+    private var cachedComments: List<Comment>? = null //Should use Room here
 
-    //TODO: Think about some sort of caching - maybe Room
     override suspend fun getComments(): Result<List<Comment>> {
+        cachedComments?.let {
+            return Result.success(it)
+        }
         return try {
             val dtos = api.getComments()
-            Result.success(dtos.map { it.toDomainModel() })
+            val comments = dtos.map { it.toDomainModel() }
+            cachedComments = comments
+            Result.success(comments)
         } catch (e: UnknownHostException) {
             Result.failure(NetworkError.NoInternet(e))
         } catch (e: IOException) {

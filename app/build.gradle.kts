@@ -77,7 +77,7 @@ dependencies {
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
-    testImplementation("app.cash.paparazzi:paparazzi:2.0.0-alpha02")
+    testImplementation(libs.paparazzi)
 
 
     implementation(libs.androidx.core.ktx)
