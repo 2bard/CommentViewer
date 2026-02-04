@@ -40,6 +40,7 @@
 - Proper caching could be added to repository (probably room)
 - Use SavedStateHandle in ViewModels
 - Navigation structure change to handle tablets
+- Proper debouncing/loading state handling on 'retry' button
 
 # Demo videos
 
