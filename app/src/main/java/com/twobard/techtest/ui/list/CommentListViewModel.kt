@@ -6,8 +6,10 @@ import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import com.twobard.techtest.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,7 +27,11 @@ class CommentListViewModel @Inject constructor(
     fun loadComments() {
         viewModelScope.launch {
             isLoading()
-            val result = sortedCommentsUseCase.invoke()
+
+            val result = withContext(Dispatchers.IO) {
+                sortedCommentsUseCase.invoke()
+            }
+            
             result.getOrNull()?.let {
                 _comments.value = it
                 finishLoading()
