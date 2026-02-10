@@ -1,16 +1,21 @@
 package com.twobard.techtest.viewmodel
 
+import TestDispatcherProvider
+import com.twobard.techtest.di.dispatchers.DispatcherProvider
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import com.twobard.techtest.ui.list.CommentListViewModel
+import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
@@ -19,6 +24,7 @@ import org.robolectric.annotation.Config
 import kotlin.intArrayOf
 import kotlin.test.Test
 import kotlin.test.assertEquals
+
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE,
@@ -33,7 +39,6 @@ class CommentViewModelTest {
     fun setup() {
         Dispatchers.setMain(StandardTestDispatcher())
         useCase = mock()
-        viewModel = CommentListViewModel(useCase)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -46,8 +51,7 @@ class CommentViewModelTest {
         )
 
         whenever(useCase.invoke()).thenReturn(Result.success(comments))
-
-        viewModel.loadComments()
+        viewModel = CommentListViewModel(useCase, TestDispatcherProvider(StandardTestDispatcher()))
         advanceUntilIdle()
 
         // Check the state flow emitted the comments

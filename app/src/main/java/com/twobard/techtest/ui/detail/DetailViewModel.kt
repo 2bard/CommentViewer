@@ -3,6 +3,7 @@ package com.twobard.techtest.ui.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.twobard.techtest.data.repository.NetworkError
+import com.twobard.techtest.di.dispatchers.DispatcherProvider
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.GetCommentUseCase
 import com.twobard.techtest.ui.BaseViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    val getCommentUseCase: GetCommentUseCase
+    val getCommentUseCase: GetCommentUseCase,
+    private val dispatcherProvider: DispatcherProvider,
 ) : BaseViewModel() {
 
     val commentId: Int = checkNotNull(savedStateHandle["commentId"])
@@ -32,7 +34,7 @@ class DetailViewModel @Inject constructor(
     fun loadComment(){
         viewModelScope.launch {
 
-            val commentResult = withContext(Dispatchers.IO) {
+            val commentResult = withContext(dispatcherProvider.io) {
                 getCommentUseCase.invoke(commentId)
             }
 

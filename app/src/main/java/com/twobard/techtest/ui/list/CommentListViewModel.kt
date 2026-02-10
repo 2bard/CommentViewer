@@ -2,10 +2,12 @@ package com.twobard.techtest.ui.list
 
 import androidx.lifecycle.viewModelScope
 import com.twobard.techtest.data.repository.NetworkError
+import com.twobard.techtest.di.dispatchers.DispatcherProvider
 import com.twobard.techtest.domain.repository.Comment
 import com.twobard.techtest.domain.usecase.SortedCommentsUseCase
 import com.twobard.techtest.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommentListViewModel @Inject constructor(
-    val sortedCommentsUseCase: SortedCommentsUseCase
+    val sortedCommentsUseCase: SortedCommentsUseCase,
+    private val dispatcherProvider: DispatcherProvider
 ) : BaseViewModel() {
 
     private val _comments = MutableStateFlow<List<Comment>>(listOf())
@@ -28,7 +31,7 @@ class CommentListViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading()
 
-            val result = withContext(Dispatchers.IO) {
+            val result = withContext(dispatcherProvider.io) {
                 sortedCommentsUseCase.invoke()
             }
             
